@@ -8,14 +8,18 @@ import {
 import { initialize as loadAstro, transform } from "@astrojs/compiler";
 import astroWASM from "@astrojs/compiler/astro.wasm?url";
 
-Promise.all([loadAstro({ wasmURL: astroWASM })]);
-
 const url = "http://localhost:5173/"; // TODO
+
+async function initWasm() {
+  await Promise.all([loadAstro({ wasmURL: astroWASM })]); // TODO
+}
 
 export async function setupSandpack(
   element: HTMLIFrameElement,
   input: { name: string; code: string }[]
 ) {
+  await initWasm();
+
   const entry = input[0];
   let files: any = {};
 
