@@ -8,7 +8,7 @@ import {
 import { initialize as loadAstro, transform } from "@astrojs/compiler";
 import astroWASM from "@astrojs/compiler/astro.wasm?url";
 
-await Promise.all([loadAstro({ wasmURL: astroWASM })]);
+Promise.all([loadAstro({ wasmURL: astroWASM })]);
 
 const url = "http://localhost:5173/"; // TODO
 
